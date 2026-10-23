@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f8f7f2" />
+    <meta name="description" content="Spyridon: a personal running progress journal." />
+    <title>Spyridon / running journal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css?v=build16" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
+    <script src="supabase-config.js?v=build16" defer></script>
+    <script src="app.js?v=build16" defer></script>
+  </head>
+  <body>
+    <div class="grit" aria-hidden="true"></div>
+    <main>
+      <section class="auth-section" aria-labelledby="auth-title">
+        <div><p class="section-label">ONLINE SYNC</p><h2 id="auth-title">Account</h2></div>
+        <form id="auth-form" class="auth-form">
+          <label>Email<input id="auth-email" name="email" type="email" autocomplete="email" required /></label>
+          <label>Password<input id="auth-password" name="password" type="password" autocomplete="current-password" minlength="6" required /></label>
+          <div class="auth-actions"><button class="auth-button" type="submit">SIGN IN</button><button id="sign-up-button" class="text-button" type="button">CREATE ACCOUNT</button></div>
+        </form>
+        <div id="auth-session" class="auth-session" hidden><span id="account-email"></span><button id="sign-out-button" class="text-button" type="button">SIGN OUT</button></div>
+        <p id="auth-status" class="auth-status" role="status">SIGN IN TO SYNC RUNS.</p>
+      </section>
+      <section class="entry-section" aria-labelledby="entry-title">
+        <div class="section-heading"><p class="section-label">NEW ENTRY</p><h2 id="entry-title">Log a run</h2></div>
+        <form id="run-form" class="run-form">
+          <label>Date<input id="run-date" name="date" type="date" required /></label>
+          <fieldset><legend>Distance</legend><div class="form-distance"><label><input type="radio" name="distance" value="5000" checked /><span>5 KM</span></label><label><input type="radio" name="distance" value="10000" /><span>10 KM</span></label></div></fieldset>
+          <label>Time<input id="run-time" name="time" type="text" inputmode="numeric" placeholder="24:36" pattern="(?:[0-9]{1,2}:)?[0-5]?[0-9]:[0-5][0-9]" required /></label>
+          <button class="submit-button" type="submit">ADD RUN</button>
+          <p id="form-status" class="form-status" role="status"></p>
+        </form>
+      </section>
+      <section class="control-strip" aria-label="Distance view">
+        <div><p class="section-label">VIEW</p><h2>Distance</h2></div>
+        <div class="distance-switch" role="group" aria-label="Distance">
+          <button class="distance-switch__button is-active" type="button" data-distance="5000">5 KM</button>
+          <button class="distance-switch__button" type="button" data-distance="10000">10 KM</button>
+        </div>
+      </section>
+      <section class="metrics" aria-label="Key statistics">
+        <article class="metric metric--primary"><p>LATEST</p><strong id="latest-time">--:--</strong><small id="latest-date">NO DATA</small></article>
+        <article class="metric"><p>BEST</p><strong id="personal-best">--:--</strong><small id="personal-best-date">NO DATA</small></article>
+        <article class="metric metric--target"><p>TO <span id="target-label">20:00</span></p><strong id="target-gap">--:--</strong><small id="target-status">WAITING FOR A RUN</small></article>
+        <article class="metric"><p>RUNS</p><strong id="run-count">00</strong><small>AT THIS DISTANCE</small></article>
+      </section>
+      <section class="chart-section">
+        <div class="chart-section__heading">
+          <div><p class="section-label">PROGRESS</p><h2>Pace over time</h2></div>
+          <div class="legend" aria-label="Chart legend"><span><i class="legend__mark"></i> RESULT</span><span><i class="legend__mark legend__mark--trend"></i> TREND</span><span><i class="legend__mark legend__mark--goal"></i> GOAL</span></div>
+        </div>
+        <div class="chart-wrap"><canvas id="progress-chart" aria-label="Running time progress chart"></canvas><div class="chart-state" id="chart-state" role="status">NO RUNS YET</div></div>
+      </section>
+      <section class="ledger-section">
+        <div class="ledger-section__heading"><div><p class="section-label">HISTORY</p><h2>Recent runs</h2></div><p id="trend-summary" class="trend-note">TREND: WAITING FOR DATA</p></div>
+        <div class="ledger-wrap"><table><thead><tr><th>DATE</th><th>TIME</th><th>PACE / KM</th><th>STATUS</th><th><span class="visually-hidden">ACTIONS</span></th></tr></thead><tbody id="run-ledger"><tr><td colspan="5">NO ENTRIES YET.</td></tr></tbody></table></div>
+      </section>
+    </main>
+    <footer><span>PRIVATE ONLINE SYNC</span><span id="footer-year"></span></footer>
+  </body>
+</html>
