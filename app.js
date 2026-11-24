@@ -280,7 +280,6 @@ document.querySelectorAll("[data-distance]").forEach((button) => button.addEvent
 }));
 
 document.querySelector("#run-date").valueAsDate = new Date();
-document.querySelector("#footer-year").textContent = String(new Date().getFullYear());
 elements["auth-form"].addEventListener("submit", async (event) => {
   event.preventDefault();
   const formData = new FormData(event.currentTarget);
