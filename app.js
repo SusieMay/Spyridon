@@ -182,9 +182,9 @@ function drawChart(runs, settings) {
   chart = new Chart(document.querySelector("#progress-chart"), {
     type: "line",
     data: { labels, datasets: [
-      { label: "RESULT", data: results, borderColor: "#6d9eb8", backgroundColor: "#f8f7f2", borderWidth: 2, pointRadius: 5, pointHoverRadius: 7, pointBorderWidth: 2, tension: 0, order: 1 },
-      { label: "TREND", data: trend, borderColor: "#9d9a91", borderWidth: 1.5, borderDash: [3, 7], pointRadius: 0, tension: 0, order: 2 },
-      { label: `GOAL ${settings.label}`, data: labels.map(() => settings.goalSeconds), borderColor: "#c66f6b", borderWidth: 2, borderDash: [10, 7], pointRadius: 0, order: 0 },
+      { label: "RESULT", data: results, borderColor: "#f0a43a", backgroundColor: "#1b1916", borderWidth: 2, pointRadius: 4, pointHoverRadius: 6, pointBorderWidth: 2, pointStyle: "rect", tension: 0, order: 1 },
+      { label: "TREND", data: trend, borderColor: "#8a8170", borderWidth: 1.5, borderDash: [3, 6], pointRadius: 0, tension: 0, order: 2 },
+      { label: `GOAL ${settings.label}`, data: labels.map(() => settings.goalSeconds), borderColor: "#e2654f", borderWidth: 2, borderDash: [10, 7], pointRadius: 0, order: 0 },
     ]},
     options: {
       responsive: true,
@@ -193,15 +193,20 @@ function drawChart(runs, settings) {
       plugins: {
         legend: { display: false },
         tooltip: {
-          backgroundColor: "#2c2b29",
-          titleFont: { family: "Space Mono" },
-          bodyFont: { family: "Space Mono" },
+          backgroundColor: "#12110f",
+          borderColor: "#3a352d",
+          borderWidth: 2,
+          cornerRadius: 0,
+          titleColor: "#f0a43a",
+          bodyColor: "#e9dfc7",
+          titleFont: { family: "IBM Plex Mono" },
+          bodyFont: { family: "IBM Plex Mono" },
           callbacks: { label: (context) => `${context.dataset.label}: ${formatTime(context.raw)}` },
         },
       },
       scales: {
-        x: { grid: { color: "rgba(49,48,44,.08)" }, border: { color: "#c8c4ba" }, ticks: { color: "#77746d", font: { family: "Space Mono", size: 9 }, maxRotation: 0, autoSkip: true, maxTicksLimit: 7 } },
-        y: { grid: { color: "rgba(49,48,44,.1)" }, border: { color: "#c8c4ba" }, ticks: { color: "#77746d", callback: (value) => formatTime(value), font: { family: "Space Mono", size: 9 } } },
+        x: { grid: { color: "rgba(233,223,199,.06)" }, border: { color: "#3a352d" }, ticks: { color: "#8a8170", font: { family: "IBM Plex Mono", size: 10 }, maxRotation: 0, autoSkip: true, maxTicksLimit: 7 } },
+        y: { grid: { color: "rgba(233,223,199,.08)" }, border: { color: "#3a352d" }, ticks: { color: "#8a8170", callback: (value) => formatTime(value), font: { family: "IBM Plex Mono", size: 10 } } },
       },
     },
   });
