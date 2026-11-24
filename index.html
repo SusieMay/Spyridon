@@ -9,17 +9,17 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;700&family=VT323&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="style.css?v=build17" />
+    <link rel="stylesheet" href="style.css?v=build18" />
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
-    <script src="supabase-config.js?v=build17" defer></script>
-    <script src="app.js?v=build17" defer></script>
+    <script src="supabase-config.js?v=build18" defer></script>
+    <script src="app.js?v=build18" defer></script>
   </head>
   <body>
-    <header class="site-header"><h1>SPYRIDON</h1><p>Running journal</p></header>
+    <header class="site-header"><h1>SPYRIDON</h1></header>
     <main>
       <section class="auth-section" aria-labelledby="auth-title">
-        <div><p class="section-label">ONLINE SYNC</p><h2 id="auth-title">Account</h2></div>
+        <h2 id="auth-title">Account</h2>
         <form id="auth-form" class="auth-form">
           <label>Email<input id="auth-email" name="email" type="email" autocomplete="email" required /></label>
           <label>Password<input id="auth-password" name="password" type="password" autocomplete="current-password" minlength="6" required /></label>
@@ -29,7 +29,7 @@
         <p id="auth-status" class="auth-status" role="status">SIGN IN TO SYNC RUNS.</p>
       </section>
       <section class="entry-section" aria-labelledby="entry-title">
-        <div class="section-heading"><p class="section-label">NEW ENTRY</p><h2 id="entry-title">Log a run</h2></div>
+        <h2 id="entry-title" class="section-heading">Log a run</h2>
         <form id="run-form" class="run-form">
           <label>Date<input id="run-date" name="date" type="date" required /></label>
           <fieldset><legend>Distance</legend><div class="form-distance"><label><input type="radio" name="distance" value="5000" checked /><span>5 KM</span></label><label><input type="radio" name="distance" value="10000" /><span>10 KM</span></label></div></fieldset>
@@ -39,7 +39,6 @@
         </form>
       </section>
       <section class="control-strip" aria-label="Distance view">
-        <div><p class="section-label">VIEW</p><h2>Distance</h2></div>
         <div class="distance-switch" role="group" aria-label="Distance">
           <button class="distance-switch__button is-active" type="button" data-distance="5000">5 KM</button>
           <button class="distance-switch__button" type="button" data-distance="10000">10 KM</button>
@@ -49,20 +48,19 @@
         <article class="metric metric--primary"><p>LATEST</p><strong id="latest-time">--:--</strong><small id="latest-date">NO DATA</small></article>
         <article class="metric"><p>BEST</p><strong id="personal-best">--:--</strong><small id="personal-best-date">NO DATA</small></article>
         <article class="metric metric--target"><p>TO <span id="target-label">20:00</span></p><strong id="target-gap">--:--</strong><small id="target-status">WAITING FOR A RUN</small></article>
-        <article class="metric"><p>RUNS</p><strong id="run-count">00</strong><small>AT THIS DISTANCE</small></article>
+        <article class="metric"><p>RUNS</p><strong id="run-count">00</strong></article>
       </section>
       <section class="chart-section">
         <div class="chart-section__heading">
-          <div><p class="section-label">PROGRESS</p><h2>Pace over time</h2></div>
+          <h2>Pace over time</h2>
           <div class="legend" aria-label="Chart legend"><span><i class="legend__mark"></i> RESULT</span><span><i class="legend__mark legend__mark--trend"></i> TREND</span><span><i class="legend__mark legend__mark--goal"></i> GOAL</span></div>
         </div>
         <div class="chart-wrap"><canvas id="progress-chart" aria-label="Running time progress chart"></canvas><div class="chart-state" id="chart-state" role="status">NO RUNS YET</div></div>
       </section>
       <section class="ledger-section">
-        <div class="ledger-section__heading"><div><p class="section-label">HISTORY</p><h2>Recent runs</h2></div><p id="trend-summary" class="trend-note">TREND: WAITING FOR DATA</p></div>
+        <div class="ledger-section__heading"><h2>Recent runs</h2><p id="trend-summary" class="trend-note">TREND: WAITING FOR DATA</p></div>
         <div class="ledger-wrap"><table><thead><tr><th>DATE</th><th>TIME</th><th>PACE / KM</th><th>STATUS</th><th><span class="visually-hidden">ACTIONS</span></th></tr></thead><tbody id="run-ledger"><tr><td colspan="5">NO ENTRIES YET.</td></tr></tbody></table></div>
       </section>
     </main>
-    <footer><span>PRIVATE ONLINE SYNC</span><span id="footer-year"></span></footer>
   </body>
 </html>
